@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2f9476f2-886c-4641-873e-428bf722afc6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3670/BussinesService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BussinesService.xsd" MetadataType="Schema" ID="c060b733-51f7-4743-bda4-ae4545f80c16" SourceId="1" SourceUrl="http://localhost:3670/BussinesService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TodoListBussinesService.wsdl" MetadataType="Wsdl" ID="04eff305-12fa-4416-add2-330dbd49e3e8" SourceId="1" SourceUrl="http://localhost:3670/BussinesService.svc?wsdl" />
+    <MetadataFile FileName="BussinesService1.xsd" MetadataType="Schema" ID="07204361-9821-4233-a8a7-9b40b27c7aec" SourceId="1" SourceUrl="http://localhost:3670/BussinesService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BussinesService2.xsd" MetadataType="Schema" ID="735b5cfd-2e22-4ade-b605-1839c1807719" SourceId="1" SourceUrl="http://localhost:3670/BussinesService.svc?xsd=xsd0" />
+    <MetadataFile FileName="BussinesService.disco" MetadataType="Disco" ID="410c62e3-bc62-4cc8-9cd1-090029146f3e" SourceId="1" SourceUrl="http://localhost:3670/BussinesService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

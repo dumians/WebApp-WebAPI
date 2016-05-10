@@ -1,0 +1,82 @@
+Azure Active Directory
+======================
+
+Tenant: "Azure Sample AD"
+Tenant URL: azuresamplead.onmicrosoft.com
+
+Application: "TodoListService"
+==============================
+
+CLIENT ID
+678d0367-e99e-4ce8-90bf-8980937b9fbb
+
+SIGN-ON URL
+https://localhost:44321
+
+URL:
+https://azuresamplead.onmicrosoft.com/TodoListService
+
+
+
+Application: "TodoListWebApp-AppIdentity"
+=========================================
+
+CLIENT ID
+4443bfd2-6508-4ae4-9bb4-991df2ec3c93
+
+SIGN-ON URL
+https://localhost:44322
+
+URL:
+https://azuresamplead.onmicrosoft.com/TodoListWebApp-AppIdentity
+
+Key:
+JQGfmaGU/kDr7JvbXESITLQcggorF6HkL5+Qg8fyt6k=
+
+Application: "AuthService"
+=========================================
+
+CLIENT ID
+e31488b9-3357-431f-bb4c-c11e737f3083
+
+SIGN-ON URL
+https://localhost:44300/
+
+URL:
+https://azuresamplead.onmicrosoft.com/AuthService
+
+Key:
+zVN3EeaHxvJFAfY6VpXRu8Mr99mw32Z4wr7JP6eRHiQ=
+
+
+Test User:
+==========
+
+UID: test@azuresamplead.onmicrosoft.com
+neues PWD: 96ojxpiY
+altes PWD: Wosa7619	
+
+PowerShell:
+===========
+
+Windows PowerShell
+Copyright (C) 2009 Microsoft Corporation. Alle Rechte vorbehalten.
+
+PS C:\Users\sfdv> dir Cert:\LocalMachine\My
+
+
+    Verzeichnis: Microsoft.PowerShell.Security\Certificate::LocalMachine\My
+
+
+Thumbprint                                Subject
+----------                                -------
+E00F59B2AD24D31952EAAAD881DFADC2BD697BFF  CN=localhost
+
+
+PS C:\Users\sfdv>
+
+PS C:\windows\system32> $cert = (get-item cert:\LocalMachine\My\E00F59B2AD24D31952EAAAD881DFADC2BD697BFF)
+PS C:\windows\system32> $store = (get-item cert:\Localmachine\Root)
+PS C:\windows\system32> $store.Open("ReadWrite")
+PS C:\windows\system32> $store.Add($cert)
+PS C:\windows\system32> $store.Close()
