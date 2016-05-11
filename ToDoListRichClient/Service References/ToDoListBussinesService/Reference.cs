@@ -8,23 +8,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Runtime.Serialization;
-
-namespace ToDoListRichClient.Service_References.ToDoListBussinesService {
+namespace ToDoListRichClient.ToDoListBussinesService {
+    using System.Runtime.Serialization;
+    using System;
+    
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [DataContract(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/TodoListWcfService")]
-    [Serializable()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/TodoListWcfService")]
+    [System.SerializableAttribute()]
     public partial class CompositeType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [NonSerialized()]
+        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [OptionalField()]
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool BoolValueField;
         
-        [OptionalField()]
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StringValueField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -37,7 +38,7 @@ namespace ToDoListRichClient.Service_References.ToDoListBussinesService {
             }
         }
         
-        [DataMember()]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool BoolValue {
             get {
                 return this.BoolValueField;
@@ -50,7 +51,7 @@ namespace ToDoListRichClient.Service_References.ToDoListBussinesService {
             }
         }
         
-        [DataMember()]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string StringValue {
             get {
                 return this.StringValueField;
@@ -84,19 +85,19 @@ namespace ToDoListRichClient.Service_References.ToDoListBussinesService {
         System.Threading.Tasks.Task<string> GetDataAsync(int value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBussinesService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IBussinesService/GetDataUsingDataContractResponse")]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        ToDoListRichClient.ToDoListBussinesService.CompositeType GetDataUsingDataContract(ToDoListRichClient.ToDoListBussinesService.CompositeType composite);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBussinesService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IBussinesService/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<CompositeType> GetDataUsingDataContractAsync(CompositeType composite);
+        System.Threading.Tasks.Task<ToDoListRichClient.ToDoListBussinesService.CompositeType> GetDataUsingDataContractAsync(ToDoListRichClient.ToDoListBussinesService.CompositeType composite);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IBussinesServiceChannel : IBussinesService, System.ServiceModel.IClientChannel {
+    public interface IBussinesServiceChannel : ToDoListRichClient.ToDoListBussinesService.IBussinesService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class BussinesServiceClient : System.ServiceModel.ClientBase<IBussinesService>, IBussinesService {
+    public partial class BussinesServiceClient : System.ServiceModel.ClientBase<ToDoListRichClient.ToDoListBussinesService.IBussinesService>, ToDoListRichClient.ToDoListBussinesService.IBussinesService {
         
         public BussinesServiceClient() {
         }
@@ -125,11 +126,11 @@ namespace ToDoListRichClient.Service_References.ToDoListBussinesService {
             return base.Channel.GetDataAsync(value);
         }
         
-        public CompositeType GetDataUsingDataContract(CompositeType composite) {
+        public ToDoListRichClient.ToDoListBussinesService.CompositeType GetDataUsingDataContract(ToDoListRichClient.ToDoListBussinesService.CompositeType composite) {
             return base.Channel.GetDataUsingDataContract(composite);
         }
         
-        public System.Threading.Tasks.Task<CompositeType> GetDataUsingDataContractAsync(CompositeType composite) {
+        public System.Threading.Tasks.Task<ToDoListRichClient.ToDoListBussinesService.CompositeType> GetDataUsingDataContractAsync(ToDoListRichClient.ToDoListBussinesService.CompositeType composite) {
             return base.Channel.GetDataUsingDataContractAsync(composite);
         }
     }

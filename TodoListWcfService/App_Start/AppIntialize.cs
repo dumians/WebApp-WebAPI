@@ -17,7 +17,7 @@ namespace TodoListWcfService.App_Code
         /// <summary>
         /// The Logger
         /// </summary>
-        //private static ILog _log = LogManager.GetLogger(LogCategories.Infrastructure);
+        private static ILog _log = LogManager.GetLogger(LogCategories.Infrastructure);
 
         /// <summary>
         ///  intialize web host
@@ -138,15 +138,71 @@ namespace TodoListWcfService.App_Code
 
             string path = Directory.GetCurrentDirectory();
 
+            var assemblyLocation = AppDomain.CurrentDomain.BaseDirectory + "bin";
+
+            Assembly asm = Assembly.GetExecutingAssembly();
+            _log.TraceFormat("\r\n\nServer path : {0} current {1}", asm.CodeBase, path);
+            _log.DebugFormat("Searching for assemblies in path '{0}'", assemblyLocation);
+
+            //Print the file name and version number. is in Autoconfiguredservicehost.cs
+
+            var dlls = Directory.GetFiles(assemblyLocation, "Contoso.Serv*.*.dll");
+            var assemblies = dlls.Select(Assembly.LoadFrom).ToList();
+            _log.DebugFormat("Found {0} assemblies: {1}", assemblies.Count, string.Join(", ", assemblies));
+
+            var dynamicModules = assemblies.SelectMany(AllDynamicModules).ToList();
+            var startableDynamicModules = dynamicModules.OfType<IStartableDynamicModule>().ToList();
+
+            _log.DebugFormat("Found {0} IDynamicModules: {1}", dynamicModules.Count(), string.Join(", ", dynamicModules));
+
+            using (new ProfilingScope(string.Format("Initialized {0} IDynamicModules ", dynamicModules.Count())))
+            {
+                foreach (var module in dynamicModules)
+                {
+                    using (new ProfilingScope(string.Format("Initialized Module '{0}' ", module.GetType().Name)))
+                    {
+                        module.Initialize();
+                    }
+                }
+            }
+
+            using (new ProfilingScope(string.Format("Started {0} IStartableDynamicModules ", startableDynamicModules.Count())))
+                try
+                {
+                    startableDynamicModules.ForEach(module => module.Start());
+                }
+                catch (Exception ex)
+                {
+                    _log.Error("Error Starting Module", ex);
+                    throw;
+                }
+            // Display information about each assembly loaded into this AppDomain.
+
+            foreach (Assembly myassembly in assemblies)
+            {
+                _log.InfoFormat("Assembly  {0}", myassembly);
+                foreach (AssemblyName an in myassembly.GetReferencedAssemblies())
+                {
+                    _log.InfoFormat("reference Name={0}, Version={1}, Culture={2}, PublicKey token={3} , Path {4}", an.Name, an.Version, an.CultureInfo.Name, (BitConverter.ToString(an.GetPublicKeyToken())), an.CodeBase);
+                }
+            }
+
             InitializeDependencyFactory();
 
+            sw.Stop();
+        
+            ILog serviceTimeLog = LogManager.GetLogger(LogCategories.Infrastructure);
+
 #if DEBUG
-                Debug.WriteLine(string.Format(" Server Started in Debug Mode took  {0} ", sw.Elapsed));
-  
+                serviceTimeLog.InfoFormat("Contoso Server Started in Debug Mode");
+                _log.DebugFormat("Contoso Server Start in Debug Mode took  {0} ", sw.Elapsed);
+
 #else
-            Debug.WriteLine(string.Format(" Server Start in release Mode took  {0} ", sw.Elapsed));
+            serviceTimeLog.InfoFormat("Contoso Server Started in release Mode");
+            _log.DebugFormat("Contoso Server Start in release Mode took  {0} ", sw.Elapsed);
 #endif
 
         }
+           
     }
 }

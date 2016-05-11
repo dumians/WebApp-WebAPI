@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="TodoListWcfService.TodoListBussinesService" CodeBehind="BussinesService.svc.cs" %>
+﻿<%@ Factory="System.ServiceModel.Activation.ServiceHostFactory" Service="ToDoList.Server.Bussines.Services.TodoListBussinesService"  %>
